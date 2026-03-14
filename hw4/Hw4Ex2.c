@@ -4,18 +4,6 @@
 #include <pthread.h>
 #include <time.h>
 #include <stdint.h>
-
-#if defined(__ARM_NEON) || defined(__ARM_NEON__)
-    #include <arm_neon.h>
-    #define USING_NEON 1
-#elif defined(__AVX2__) || defined(__AVX__)
-    #include <immintrin.h>
-    #define USING_AVX 1
-#else
-    #include <emmintrin.h>
-    #define USING_SSE 1
-#endif
-
 #define BUFFER_SIZE (256 * 1024 * 1024)
 #define NUM_THREADS 4
 
@@ -240,10 +228,10 @@ int main() {
     double start, end;
     double time_mt, time_simd, time_mt_simd;
     
-    printf("\n=== INPUT SAMPLE ===\n");
+    printf(".    INPUT\n");
     print_sample(original, BUFFER_SIZE, "Original");
     
-    printf("\n=== PROCESSING %d MB WITH %d THREADS ===\n", 
+    printf(".    PROCESSING %d MB WITH %d THREADS\n", 
            (int)(BUFFER_SIZE / (1024 * 1024)), NUM_THREADS);
     
     printf("\nSIMD Implementation: ");
@@ -278,7 +266,7 @@ int main() {
     int simd_valid = verify_buffers(buffer_scalar, buffer_simd, BUFFER_SIZE);
     int mt_simd_valid = verify_buffers(buffer_scalar, buffer_mt_simd, BUFFER_SIZE);
     
-    printf("\n=== RESULTS ===\n");
+    printf(".    RESULT\n");
     printf("Buffer size: %d MB\n", (int)(BUFFER_SIZE / (1024 * 1024)));
     printf("Threads used: %d\n\n", NUM_THREADS);
     
@@ -289,7 +277,7 @@ int main() {
     printf("SIMD + Multithreading:    %.4f sec\n", 
            time_mt_simd);
     
-    printf("\n=== OUTPUT SAMPLE ===\n");
+    printf("\n.    OUTPUT\n");
     print_sample(buffer_mt_simd, BUFFER_SIZE, "Converted");
     
     free(original);
