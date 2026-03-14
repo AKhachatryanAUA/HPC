@@ -1,0 +1,23 @@
+SIMD help to divide the load between cores in one CPU unit. Thus, enoming time because the cores share the same register and same instruction set.
+And if you combine it with multithreading you get an even better result.  
+
+
+The algorithm for all task as similar.
+
+1) Scalar approach:
+  Simply go one by one on each character and count
+2) SIMD approach:
+  create 4 units to execute 32 characters simmultaniously.
+3) Multithreading approach:
+  Split the string in  parts(4 equal parts of equal length), then pas each one to one of 4 threads.
+4) Multithreading+SIMD approach:
+  do the same thing as in multithreading approach, but each thread creates units of its own to analyze 32 characters at the same time.
+
+worth mentioning:
+Task 2:
+upper case of a letter is cumputed by substracting 32 from the char (e.g. 'a' - 32='A')
+
+Task 3:
+in multithreading the image is divided by rows.
+
+
