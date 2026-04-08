@@ -1,0 +1,28 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2868
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11500\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Task 1:\
+\
+Creates an array of N bytes.\
+Uses 3 approaches t count:\
+	1.  Naive - use a simple for loop, causes wrong count and overlaps\
+	2. Critical -  uses a critical section inside the for loop to avoid overlaps, but is very slow\
+	3. Reduction -uses openMP built in array reduction each thread counts its portion then all is combined 	    into one resulting in fast and correct count.\
+\
+Task 2:\
+\
+Creates an array of N floating points\
+Each thread counts the absolute difference between consecutive points\
+Combine all the threads and find the global minimum difference by comparing local minimums.\
+\
+Task 3:\
+\
+Create an array of N points.\
+\
+Divide the tray between threads to find the max element.\
+Calculate threshold 80 percentile from max\
+Sum up all the numbers in array bigger than the threshold, by dividing array between threads again.}
